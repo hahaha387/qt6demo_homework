@@ -16,8 +16,6 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
-        finddialog.cpp
-        finddialog.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
