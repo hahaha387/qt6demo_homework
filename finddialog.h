@@ -36,13 +36,5 @@ signals:
 private slots:
     void findClicked();
     void enabledFindButton(const QString &text);
-private:
-    QLabel *label;
-    QLineEdit *lineEdit;
-    QCheckBox *caseCheckBox;
-    QCheckBox *backwardCheckBox;
-    QPushButton*findButton;
-    QPushButton*closeButton;
-
 };
 #endif // DIALOG_H
