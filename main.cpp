@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 //author:huangruixian
 #include <QLabel>
 #include <QPushButton>
@@ -60,4 +61,43 @@ int main()
             break;
     }
 >>>>>>> df67281 (Grade With Postgresql)
+=======
+#include <QApplication>
+#include <QHBoxLayout>
+#include <QSlider>
+#include <QSpinBox>
+#include <memory>
+int main(int argc,char *argv[])
+{
+    QApplication app(argc,argv);
+
+    //QWidget *window=new QWidget;
+    auto window=std::__make_shared<QWidget>();
+    window->setWindowTitle("Enter Your Age");
+
+    //QSpinBox *spinBox=new QSpinBox;
+    //QSlider *silder=new QSlider(Qt::Horizontal);
+    auto spinBox=std::__make_shared<QSpinBox>();
+    auto silder=std::__make_shared<QSlider>(Qt::Horizontal);
+    spinBox->setRange(0,130);
+    silder->setRange(0,130);
+
+//    QObject::connect(spinBox, SIGNAL(valueChanged(int)),silder, SLOT(setValue(int)));
+//    QObject::connect(silder, SIGNAL(valueChanged(int)),spinBox, SLOT(setValue(int)));
+
+    QObject::connect(spinBox.get(),&QSpinBox::valueChanged,
+                      silder.get(), &QSlider::setValue);
+    QObject::connect(silder.get(),&QSlider::valueChanged,
+                     spinBox.get(), &QSpinBox::setValue);
+    spinBox->setValue(35);
+
+//  QHBoxLayout *layout=new QHBoxLayout;
+    auto layout=std::__make_shared<QHBoxLayout>();
+    layout->addWidget(spinBox.get());
+    layout->addWidget(silder.get());
+    window->setLayout(layout.get());
+
+    window->show();
+    return app.exec();
+>>>>>>> f17eab2 (Widget layout)
 }

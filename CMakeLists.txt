@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 project(dialog VERSION 0.1 LANGUAGES CXX)
 
@@ -69,16 +70,68 @@ project( GRADE LANGUAGES CXX )
 #                string )
          
 add_executable( GRADE )
+=======
+>>>>>>> f17eab2 (Widget layout)
 
-target_sources( GRADE PRIVATE
-    grade.cpp grade.h main.cpp dbtool.cpp dbtool.h grades.dat)
-                
-target_compile_features( GRADE PRIVATE cxx_std_20 )
-target_link_libraries(GRADE PRIVATE pqxx)
+project(layout VERSION 0.1 LANGUAGES CXX)
 
-install(TARGETS GRADE
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+
+set(PROJECT_SOURCES
+        main.cpp
+        widget.cpp
+        widget.h
+        widget.ui
+)
+
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    qt_add_executable(layout
+        MANUAL_FINALIZATION
+        ${PROJECT_SOURCES}
+    )
+# Define target properties for Android with Qt 6 as:
+#    set_property(TARGET layout APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
+# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
+else()
+    if(ANDROID)
+        add_library(layout SHARED
+            ${PROJECT_SOURCES}
+        )
+# Define properties for Android with Qt 5 after find_package() calls as:
+#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+    else()
+        add_executable(layout
+            ${PROJECT_SOURCES}
+        )
+    endif()
+endif()
+
+target_link_libraries(layout PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+
+set_target_properties(layout PROPERTIES
+    MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
+    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+    MACOSX_BUNDLE TRUE
+    WIN32_EXECUTABLE TRUE
+)
+
+install(TARGETS layout
+    BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
+<<<<<<< HEAD
 #target_compile_options( GRADE PRIVATE -fmodules-ts )
 
 #target_include_directories( GRADE PRIVATE /usr/include )
@@ -129,3 +182,8 @@ install(TARGETS GRADE
 #set(CMAKE_CXX_STANDARD 20)
 #set(CMAKE_CXX_STANDARD_REQUIRED ON)    
 >>>>>>> df67281 (Grade With Postgresql)
+=======
+if(QT_VERSION_MAJOR EQUAL 6)
+    qt_finalize_executable(layout)
+endif()
+>>>>>>> f17eab2 (Widget layout)
