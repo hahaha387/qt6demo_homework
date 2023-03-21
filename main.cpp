@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 //author:huangruixian
 #include <QLabel>
 #include <QPushButton>
@@ -84,14 +85,19 @@ int main(int argc,char* argv[])
 =======
 //author:huangruixian
 #include "gotocelldialog.h"
+=======
+//author:2021051615215huangruixian
+#include "sortdialog.h"
+>>>>>>> 30ae219 (sortdialog)
 
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    GoToCellDialog w;
-    w.show();
+    SortDialog *dialog=new SortDialog;
+    dialog->setColumnRange('C','F');
+    dialog->show();
     return a.exec();
 >>>>>>> 94b3ee7 (gotocelldialog)
 }

@@ -73,7 +73,7 @@ add_executable( GRADE )
 =======
 >>>>>>> f17eab2 (Widget layout)
 
-project(gotocelldialog VERSION 0.1 LANGUAGES CXX)
+project(sortgialog VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -87,43 +87,39 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
-#find_package(Qt6 REQUIRED COMPONENTS Core5Compat)
-
-#target_link_libraries(gotocelldialog PRIVATE Qt6::Core5Compat)
-
 set(PROJECT_SOURCES
         main.cpp
-        gotocelldialog.cpp
-        gotocelldialog.h
-        gotocelldialog.ui
+        sortdialog.cpp
+        sortdialog.h
+        sortdialog.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(gotocelldialog
+    qt_add_executable(sortgialog
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
 # Define target properties for Android with Qt 6 as:
-#    set_property(TARGET gotocelldialog APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+#    set_property(TARGET sortgialog APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
-        add_library(gotocelldialog SHARED
+        add_library(sortgialog SHARED
             ${PROJECT_SOURCES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(gotocelldialog
+        add_executable(sortgialog
             ${PROJECT_SOURCES}
         )
     endif()
 endif()
 
-target_link_libraries(gotocelldialog PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(sortgialog PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
-set_target_properties(gotocelldialog PROPERTIES
+set_target_properties(sortgialog PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -131,7 +127,7 @@ set_target_properties(gotocelldialog PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
-install(TARGETS gotocelldialog
+install(TARGETS sortgialog
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
@@ -188,6 +184,6 @@ install(TARGETS gotocelldialog
 >>>>>>> df67281 (Grade With Postgresql)
 =======
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(gotocelldialog)
+    qt_finalize_executable(sortgialog)
 endif()
 >>>>>>> f17eab2 (Widget layout)
