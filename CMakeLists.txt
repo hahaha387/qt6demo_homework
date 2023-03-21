@@ -73,7 +73,7 @@ add_executable( GRADE )
 =======
 >>>>>>> f17eab2 (Widget layout)
 
-project(sortgialog VERSION 0.1 LANGUAGES CXX)
+project(dialog VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -89,37 +89,34 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
-        sortdialog.cpp
-        sortdialog.h
-        sortdialog.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(sortgialog
+    qt_add_executable(dialog
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
 # Define target properties for Android with Qt 6 as:
-#    set_property(TARGET sortgialog APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+#    set_property(TARGET dialog APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
-        add_library(sortgialog SHARED
+        add_library(dialog SHARED
             ${PROJECT_SOURCES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(sortgialog
+        add_executable(dialog
             ${PROJECT_SOURCES}
         )
     endif()
 endif()
 
-target_link_libraries(sortgialog PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(dialog PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
-set_target_properties(sortgialog PROPERTIES
+set_target_properties(dialog PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -127,7 +124,7 @@ set_target_properties(sortgialog PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
-install(TARGETS sortgialog
+install(TARGETS dialog
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
@@ -184,6 +181,6 @@ install(TARGETS sortgialog
 >>>>>>> df67281 (Grade With Postgresql)
 =======
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(sortgialog)
+    qt_finalize_executable(dialog)
 endif()
 >>>>>>> f17eab2 (Widget layout)

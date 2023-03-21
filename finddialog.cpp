@@ -5,6 +5,7 @@
 FindDialog::FindDialog(QWidget *parent)
     : QDialog(parent)
 {
+<<<<<<< HEAD
     auto label=new QLabel ("Find &what:",this);
     auto lineEdit=new QLineEdit("",this);
     label->setBuddy(lineEdit);
@@ -17,6 +18,9 @@ FindDialog::FindDialog(QWidget *parent)
     findButton->setEnabled(false);
 
     auto closeButton=new QPushButton("Close",this);
+=======
+    
+>>>>>>> 5d72a0b (finddialog)
     connect(lineEdit,&QLineEdit::textChanged,
                      this,&FindDialog::enabledFindButton);
     connect(findButton,&QPushButton::clicked,
@@ -53,10 +57,14 @@ FindDialog::~FindDialog()
 
 void FindDialog::findClicked()
 {
+<<<<<<< HEAD
     QString text=this->findChild<QLineEdit*>("")->text();
     auto checkBoxList=this->findChildren<QCheckBox*>();
     Qt::CaseSensitivity cs=checkBoxList[0]->isChecked()?Qt::CaseSensitive:Qt::CaseInsensitive;
     if(checkBoxList[1]->isChecked())
+=======
+   
+>>>>>>> 5d72a0b (finddialog)
     {
         emit findPrevious(text,cs);
     }
@@ -68,6 +76,10 @@ void FindDialog::findClicked()
 
 void FindDialog::enabledFindButton(const QString &text)
 {
+<<<<<<< HEAD
     auto buttonList=this->findChildren<QPushButton*>();
     buttonList[0]->setEnabled(!text.isEmpty());
+=======
+ 
+>>>>>>> 5d72a0b (finddialog)
 }

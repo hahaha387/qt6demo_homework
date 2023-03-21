@@ -13,6 +13,10 @@
 #include <QVBoxLayout>
 #include <QApplication>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5d72a0b (finddialog)
 QT_BEGIN_NAMESPACE
 namespace Ui { class Dialog; }
 QT_END_NAMESPACE
@@ -31,5 +35,10 @@ signals:
 private slots:
     void findClicked();
     void enabledFindButton(const QString &text);
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 5d72a0b (finddialog)
 };
 #endif // DIALOG_H
