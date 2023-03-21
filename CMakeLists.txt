@@ -73,7 +73,7 @@ add_executable( GRADE )
 =======
 >>>>>>> f17eab2 (Widget layout)
 
-project(Quit VERSION 0.1 LANGUAGES CXX)
+project(gotocelldialog VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -87,36 +87,43 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+#find_package(Qt6 REQUIRED COMPONENTS Core5Compat)
+
+#target_link_libraries(gotocelldialog PRIVATE Qt6::Core5Compat)
+
 set(PROJECT_SOURCES
         main.cpp
+        gotocelldialog.cpp
+        gotocelldialog.h
+        gotocelldialog.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(Quit
+    qt_add_executable(gotocelldialog
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
 # Define target properties for Android with Qt 6 as:
-#    set_property(TARGET Quit APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+#    set_property(TARGET gotocelldialog APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
-        add_library(Quit SHARED
+        add_library(gotocelldialog SHARED
             ${PROJECT_SOURCES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(Quit
+        add_executable(gotocelldialog
             ${PROJECT_SOURCES}
         )
     endif()
 endif()
 
-target_link_libraries(Quit PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(gotocelldialog PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
-set_target_properties(Quit PROPERTIES
+set_target_properties(gotocelldialog PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -124,7 +131,7 @@ set_target_properties(Quit PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
-install(TARGETS Quit
+install(TARGETS gotocelldialog
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
@@ -181,6 +188,6 @@ install(TARGETS Quit
 >>>>>>> df67281 (Grade With Postgresql)
 =======
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(Quit)
+    qt_finalize_executable(gotocelldialog)
 endif()
 >>>>>>> f17eab2 (Widget layout)

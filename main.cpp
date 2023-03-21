@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 //author:huangruixian
 #include <QLabel>
 #include <QPushButton>
@@ -80,4 +81,17 @@ int main(int argc,char* argv[])
 =======
 
 >>>>>>> e1dc7a1 (Widget Quit)
+=======
+//author:huangruixian
+#include "gotocelldialog.h"
+
+#include <QApplication>
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    GoToCellDialog w;
+    w.show();
+    return a.exec();
+>>>>>>> 94b3ee7 (gotocelldialog)
 }
