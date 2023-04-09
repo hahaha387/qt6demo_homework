@@ -13,11 +13,6 @@
 #include <QVBoxLayout>
 #include <QApplication>
 
-class QCheckBox;
-class QPushButton;
-class QLineEdit;
-class QLabel;
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class Dialog; }
 QT_END_NAMESPACE
