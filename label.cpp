@@ -8,7 +8,7 @@ label::label(QWidget *parent)
     setAutoFillBackground(true);
 }
 
-bool label::event(QEvent *e)
+/*bool label::event(QEvent *e)
 {
     if(e->type()==QEvent::MouseMove)
     {
@@ -18,3 +18,4 @@ bool label::event(QEvent *e)
     }
     return QWidget::event(e);
 }
+*/

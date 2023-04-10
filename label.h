@@ -8,7 +8,7 @@ class label : public QLabel
     Q_OBJECT
 public:
     explicit label(QWidget *parent = nullptr);
-    virtual bool event(QEvent *e) override;
+    //virtual bool event(QEvent *e) override;
 signals:
 
 };
