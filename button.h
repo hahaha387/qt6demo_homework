@@ -1,23 +1,23 @@
 //author: huangruixian
 //data:2023.04.17
-#ifndef LABEL_H
-#define LABEL_H
+#ifndef BUTTON_H
+#define BUTTON_H
 
 #include <QWidget>
-#include <QLabel>
+#include <QPushButton>
 #include <QEvent>
-#include "button.h"
-class Label : public QLabel
+#include"labeltwo.h"
+class Button : public QPushButton
 {
     Q_OBJECT
 public:
-    explicit Label(QWidget *parent = nullptr);
+    explicit Button(QWidget *parent = nullptr);
     virtual bool event(QEvent *e) override;
     virtual void mouseDoubleClickEvent(QMouseEvent *e) override;
 private:
-    Button *_button;
+    LabelTwo *_labeltwo;
 signals:
 
 };
 
-#endif // LABEL_H
+#endif // BUTTON_H

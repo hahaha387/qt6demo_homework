@@ -1,19 +1,21 @@
+//author: huangruixian
+//data:2023.04.17
 #ifndef WINDOW_H
 #define WINDOW_H
 
 #include <QWidget>
 #include <QEvent>
-#include <label.h>
+#include<iostream>
+#include "label.h"
 class window : public QWidget
 {
     Q_OBJECT
 
 public:
     window(QWidget *parent = nullptr);
-    //自己写事件过滤器
-    virtual bool eventFilter(QObject *obj,QEvent *e) override;
-    //virtual bool event(QEvent *event ) override;
     ~window();
-    //label *_label;
+     virtual bool event(QEvent *e) override;
+private:
+    Label *_label;
 };
 #endif // WINDOW_H
