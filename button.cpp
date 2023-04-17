@@ -1,30 +1,39 @@
-//author: huangruixian
-//data:2023.04.17
 #include "button.h"
 
 Button::Button(QWidget *parent)
     : QPushButton{parent}
 {
-    setBackgroundRole(QPalette::Dark);
-    setAutoFillBackground(true);
-
-    _labeltwo=new LabelTwo{this};
-    _labeltwo->setText("button's frist child");
-    _labeltwo->setGeometry(0,0,100,100);
+    setGeometry(10,50,80,30);
 }
 
 bool Button::event(QEvent *e)
 {
-    if(e->type()==QEvent::MouseButtonDblClick)
+    if(e->type()==QEvent::MouseButtonPress)
     {
-        this->mouseDoubleClickEvent((QMouseEvent*)e);
-        return true;
+        _timerid = startTimer(300);
+    }
+    if(e->type()==QEvent::MouseButtonRelease)
+    {
+        if(_timerid!=0)
+        {
+            killTimer(_timerid);
+            mouseClick();
+            qDebug()<<"cilick success";
+        }
+        else
+            ;
     }
     return QWidget::event(e);
+
 }
 
-void Button::mouseDoubleClickEvent(QMouseEvent *e)
+void Button::timerEvent(QTimerEvent *e)
 {
-    qDebug()<<"DoubleClick in"<<"button::event."<<"label's child"<<"Third";
-    e->ignore();
+    killTimer(_timerid);
+    _timerid=0;
+}
+
+void Button::mouseClick()
+{
+    QApplication::quit();
 }
