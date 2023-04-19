@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
 
-project(changeexit VERSION 0.1 LANGUAGES CXX)
+project(Finddialog VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -16,40 +16,36 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
-        window.cpp
-        window.h
-        button.cpp
-        button.h
-        label.cpp
-        label.h
+        finddialog.ui
+        ui_finddialog.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(changeexit
+    qt_add_executable(Finddialog
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
 # Define target properties for Android with Qt 6 as:
-#    set_property(TARGET changeexit APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+#    set_property(TARGET Finddialog APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
-        add_library(changeexit SHARED
+        add_library(Finddialog SHARED
             ${PROJECT_SOURCES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(changeexit
+        add_executable(Finddialog
             ${PROJECT_SOURCES}
         )
     endif()
 endif()
 
-target_link_libraries(changeexit PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(Finddialog PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
-set_target_properties(changeexit PROPERTIES
+set_target_properties(Finddialog PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -57,10 +53,10 @@ set_target_properties(changeexit PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
-install(TARGETS changeexit
+install(TARGETS Finddialog
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(changeexit)
+    qt_finalize_executable(Finddialog)
 endif()
